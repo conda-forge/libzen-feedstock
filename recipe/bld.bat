@@ -1,5 +1,5 @@
 rem Create Makefiles
-cmake -g Ninja ^
+cmake ^
       -DCMAKE_INSTALL_PREFIX=%PREFIX% ^
       -DCMAKE_INSTALL_LIBDIR=lib ^
       -DCMAKE_BUILD_TYPE=Release ^
@@ -9,7 +9,7 @@ cmake -g Ninja ^
       -B build
 
 rem Build
-cmake  --build build -- -j${CPU_COUNT}
+cmake  --build build
 
 rem Install
 cmake --build build -- install
