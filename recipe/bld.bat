@@ -1,5 +1,5 @@
 rem Create Makefiles
-cmake ^
+cmake -g 'Ninja Makefiles' ^
       -DCMAKE_INSTALL_PREFIX=%PREFIX% ^
       -DCMAKE_INSTALL_LIBDIR=lib ^
       -DCMAKE_BUILD_TYPE=Release ^
