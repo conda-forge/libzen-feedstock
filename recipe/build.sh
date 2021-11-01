@@ -2,7 +2,7 @@
 set -eu
 
 ### Create Makefiles
-cmake -g Ninja \
+cmake -GNinja \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DCMAKE_BUILD_TYPE=Release \
@@ -16,6 +16,3 @@ cmake  --build build -- -j${CPU_COUNT}
 
 ### Install
 cmake --build build -- install
-
-### Test / Check ?
-### There is no make check/test
