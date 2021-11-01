@@ -12,7 +12,7 @@ cmake -GNinja \
       -B build
 
 ### Build
-cmake  --build build -- -j${CPU_COUNT}
+cmake  --build build --parallel ${CPU_COUNT}
 
 ### Install
 cmake --build build -- install
