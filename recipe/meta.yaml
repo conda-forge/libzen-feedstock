@@ -34,7 +34,7 @@ test:
 
 about:
   home: https://mediaarea.net
-  license: ZLib
+  license: Zlib
   license_file: License.txt
   summary: Small C++ derivate classes to have an easier life
 
