@@ -7,7 +7,7 @@ cmake -G Ninja ^
 if errorlevel 1 exit /b 1
 
 rem Build
-cmake  --build build --parallel ${CPU_COUNT}
+cmake --build build -- -j%CPU_COUNT%
 if errorlevel 1 exit /b 1
 
 rem Install
