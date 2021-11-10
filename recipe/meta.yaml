@@ -10,7 +10,7 @@ source:
   sha256: a29fcafe41afac4ff818414ada18e4549bb2e77b2962bba2dd39db5cf747044e
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # There is no ABI history for this library
     # I am going to err on the side of caution to avoid repodata patching.
@@ -29,12 +29,12 @@ test:
     - test -f ${PREFIX}/lib/libzen.dylib  # [osx]
     - test -f ${PREFIX}/lib/libzen.so     # [linux]
     - test -f ${PREFIX}/include/ZenLib/Utils.h  # [unix]
-    - IF NOT EXIST %PREFIX%/lib/zen.lib exit 1  # [win]
-    - IF NOT EXIST %PREFIX%/include/ZenLib/Utils.h exit 1  # [win]
+    - IF NOT EXIST %LIBRARY_LIB%/zen.lib exit 1  # [win]
+    - IF NOT EXIST %LIBRARY_INC%/ZenLib/Utils.h exit 1  # [win]
 
 about:
   home: https://mediaarea.net
-  license: ZLib
+  license: Zlib
   license_file: License.txt
   summary: Small C++ derivate classes to have an easier life
 
