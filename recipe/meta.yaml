@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/MediaArea/ZenLib/archive/v{{ version }}.tar.gz
   sha256: a29fcafe41afac4ff818414ada18e4549bb2e77b2962bba2dd39db5cf747044e
+  patches:
+    - cmake-shared-libs-on-win-64.patch
 
 build:
   number: 2
@@ -29,7 +31,8 @@ test:
     - test -f ${PREFIX}/lib/libzen.dylib  # [osx]
     - test -f ${PREFIX}/lib/libzen.so     # [linux]
     - test -f ${PREFIX}/include/ZenLib/Utils.h  # [unix]
-    - IF NOT EXIST %LIBRARY_LIB%/zen.dll exit 1  # [win]
+    - IF NOT EXIST %LIBRARY_BIN%/zen.dll exit 1  # [win]
+    - IF NOT EXIST %LIBRARY_LIB%/zen.lib exit 1  # [win]
     - IF NOT EXIST %LIBRARY_INC%/ZenLib/Utils.h exit 1  # [win]
 
 about:

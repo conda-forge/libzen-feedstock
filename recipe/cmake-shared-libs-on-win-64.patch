@@ -1,0 +1,13 @@
+--- a/Project/CMake/CMakeLists.txt.orig	2021-11-11 15:17:51.000000000 +0100
++++ b/Project/CMake/CMakeLists.txt	2021-11-11 15:18:02.000000000 +0100
+@@ -8,9 +8,5 @@
+ set(ZenLib_VERSION ${ZenLib_MAJOR_VERSION}.${ZenLib_MINOR_VERSION}.${ZenLib_PATCH_VERSION})
+ 
+-if(WIN32)
+-  set(BUILD_SHARED_LIBS OFF)
+-else()
+-  option(BUILD_SHARED_LIBS "Build shared libs" ON)
+-endif()
++option(BUILD_SHARED_LIBS "Build shared libs" ON)
+ 
+ option(ENABLE_UNICODE "Enable unicode support" ON)
