@@ -2,6 +2,7 @@ rem Create Makefiles
 cmake -G Ninja ^
       -D CMAKE_BUILD_TYPE=Release ^
       -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -D BUILD_SHARED_LIBS=ON ^
       -S Project\CMake ^
       -B build
 if errorlevel 1 exit /b 1
