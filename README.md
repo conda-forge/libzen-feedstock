@@ -1,11 +1,11 @@
-About libzen
-============
+About libzen-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libzen-feedstock/blob/main/LICENSE.txt)
 
 Home: https://mediaarea.net
 
 Package license: Zlib
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libzen-feedstock/blob/main/LICENSE.txt)
 
 Summary: Small C++ derivate classes to have an easier life
 
