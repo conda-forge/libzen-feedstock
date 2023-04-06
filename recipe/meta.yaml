@@ -1,5 +1,5 @@
 {% set name = "libzen" %}
-{% set version = "0.4.40" %}
+{% set version = "0.4.41" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/MediaArea/ZenLib/archive/v{{ version }}.tar.gz
-  sha256: 63ac6750be766c9566fff22eec357ef32b67ccf1d2aa310e1eccfa6bd6b44554
+  sha256: 45d5173fa0278f5264daa6836ae297aa303984482227d00b35c4f03929494c8f
 
 build:
   number: 0
