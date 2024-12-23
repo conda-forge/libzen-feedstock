@@ -10,7 +10,7 @@ source:
   sha256: 45d5173fa0278f5264daa6836ae297aa303984482227d00b35c4f03929494c8f
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # There is no ABI history for this library
     # I am going to err on the side of caution to avoid repodata patching.
@@ -18,6 +18,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
@@ -44,3 +45,4 @@ extra:
   recipe-maintainers:
     - anjos
     - sodre
+    - pavelzw
