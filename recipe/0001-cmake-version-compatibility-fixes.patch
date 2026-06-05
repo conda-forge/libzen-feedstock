@@ -1,0 +1,54 @@
+From c373fb9c68ab81e45a342bb02d6b5575704ced41 Mon Sep 17 00:00:00 2001
+From: cjee21 <77721854+cjee21@users.noreply.github.com>
+Date: Thu, 12 Mar 2026 16:58:17 +0800
+Subject: [PATCH] CMake: Version compatibility fixes
+
+Backport the parts of upstream PR #193 that apply to the 0.4.41
+release source. The release predates the EnableLatestCXX.cmake refactor
+from upstream master, so only the CMake policy range and MSVC security
+mitigation flag handling are needed here.
+
+---
+ Project/CMake/CMakeLists.txt | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/Project/CMake/CMakeLists.txt b/Project/CMake/CMakeLists.txt
+index 077007d..c0637bd 100644
+--- a/Project/CMake/CMakeLists.txt
++++ b/Project/CMake/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.1.0)
++cmake_minimum_required(VERSION 3.5.0...4.3.0)
+ 
+ project(ZenLib)
+ 
+@@ -38,6 +38,27 @@ set(BIN_INSTALL_DIR "${CMAKE_INSTALL_FULL_BINDIR}" CACHE STRING "Directory where
+ set(LIB_INSTALL_DIR "${CMAKE_INSTALL_FULL_LIBDIR}" CACHE STRING "Directory where library will install")
+ set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_FULL_INCLUDEDIR}" CACHE PATH "The directory the headers are installed in")
+ 
++if(MSVC)
++    if(NOT "${CMAKE_VERSION}" VERSION_LESS "3.13")
++        add_compile_options(/GS /W3 /guard:cf /sdl)
++        add_link_options(/guard:cf)
++        if(CMAKE_CXX_COMPILER_ARCHITECTURE_ID STREQUAL ARM64)
++            add_compile_options(/guard:ehcont /guard:signret)
++            add_link_options(/guard:ehcont /guard:delayloadsignret)
++        endif()
++        if(CMAKE_CXX_COMPILER_ARCHITECTURE_ID STREQUAL x64)
++            add_compile_options(/guard:ehcont)
++            add_link_options(/guard:ehcont /CETCOMPAT)
++        endif()
++        if(CMAKE_CXX_COMPILER_ARCHITECTURE_ID STREQUAL X86)
++            add_compile_options()
++            add_link_options(/CETCOMPAT)
++        endif()
++    else()
++        message(WARNING "CMake < 3.13: Compiler/linker security mitigation flags for MSVC are not automatically added.")
++    endif()
++endif()
++
+ if(VCPKG_TARGET_TRIPLET)
+     set(ZenLib_CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/zenlib")
+ elseif(MSVC)
+-- 
+2.51.0
