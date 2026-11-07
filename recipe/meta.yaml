@@ -13,7 +13,7 @@ source:
     - 0001-cmake-version-compatibility-fixes.patch
 
 build:
-  number: 2
+  number: 3
   run_exports:
     # There is no ABI history for this library
     # I am going to err on the side of caution to avoid repodata patching.
@@ -26,7 +26,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
-    - pkg-config
+    - pkgconf
 
 test:
   commands:
